@@ -20,7 +20,7 @@ var mouse = (function() {
 
   return {
     facade: function(activity) {
-      privates.getActivity(activity);
+      return privates.getActivity(activity);
     }
   }
 })();
