@@ -18,10 +18,10 @@ function aConstructor(){
   };
 }
  
-// Extend both constructors with our Mixin
+// Extend both protoype with our Mixin
 jQuery.extend( aConstructor.prototype, mixins );
  
-// Create a new instance of carAnimator
+// Create a new instance of aConstructor
 var myMixinConstructor = new aConstructor();
 
 myMixinConstructor.get(); //get this item

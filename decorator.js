@@ -1,5 +1,5 @@
 //Structure 
-function aA () {
+function functionA () {
   this.a = function() { return 'a'; }
 }
 
@@ -11,8 +11,11 @@ function describeA ( anA ) {
   }
 }
 
-var anA = new aA();
-describeA( anA );
+var anA = new functionA();
+
+describeA( anA );//here aa='a'
+
 var output = describeA.a();
+
 console.log(output); //'An a is the first alphabet in English and the most important one.'
 

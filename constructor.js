@@ -1,13 +1,13 @@
 //Structure
-function a(a,b) {
+function aFunction(a,b) {
   this.a = a;
   this.b = b;
 }
 
-a.prototype.alpha = function(){
+aFunction.prototype.protoFunction = function(){
   return this.a;
 }
 
-var aA = new a('a','b');
-console.log(aA.alpha());//'a';
+var aA = new aFunction('a','b');
+console.log(aA.protoFunction());//'a';
 

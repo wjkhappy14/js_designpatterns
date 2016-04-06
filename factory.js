@@ -1,19 +1,3 @@
-//Taken from https://github.com/robdodson/JavaScript-Design-Patterns/blob/master/factory/factory-method/main.js
-
-// Polyfill -- Only necessary for browsers which don't support Object.create. Check this ES5 compatibility table:
-// http://kangax.github.com/es5-compat-table/
-if (!Object.create) {
-    Object.create = function (o) {
-        if (arguments.length > 1) {
-            throw new Error('Object.create implementation only accepts the first parameter.');
-        }
-        function F() {}
-        F.prototype = o;
-        return new F();
-    };
-}
-
-
 // Credit to Yehuda Katz for `fromPrototype` function
 // http://yehudakatz.com/2011/08/12/understanding-prototypes-in-javascript/
 var fromPrototype = function(prototype, object) {
@@ -27,48 +11,76 @@ var fromPrototype = function(prototype, object) {
 };
 
 
-// Define our `Ingredients` base object
-var Ingredients = {
-    createDough: function() {
-        return 'generic dough';
+// Define our `DeviceFactory` base object
+var DeviceFactory = {
+    screen: function() {
+        return 'retina';
     },
-    createSauce: function() {
-        return 'generic sauce';
+    battery: function() {
+        return 'lithium ion battery';
     },
-    createCrust: function() {
-        return 'generic crust';
+    keypad: function() {
+        return 'keyboard';
+    },
+    processor: function() {
+        return 'Intel Core-i5';
     }
 };
 
-// Extend `Ingredients` with concrete implementations
-Ingredients.createChicagoStyle = function() {
-    return fromPrototype(Ingredients, {
-        createDough: function() {
-            return 'thick, heavy dough';
+// Extend `DeviceFactory` with other implementations
+DeviceFactory.makeLaptop = function() {
+    return fromPrototype(DeviceFactory, {
+        screen: function() {
+            return 'retina 13 inches';
         },
-        createSauce: function() {
-            return 'rich marinara';
+        battery: function() {
+            return 'lithium ion 9 hours battery';
         },
-        createCrust: function() {
-            return 'deep-dish';
+        keypad: function() {
+            return 'backlit keyboard';
+        },
+        processor: function() {
+            return 'Intel Core-i5'
         }
     });
 };
 
-Ingredients.createCaliforniaStyle = function() {
-    return fromPrototype(Ingredients, {
-        createDough: function() {
-            return 'light, fluffy dough';
+DeviceFactory.makeSmartPhone = function() {
+    return fromPrototype(DeviceFactory, {
+        screen: function() {
+            return 'retina 5 inches';
         },
-        createSauce: function() {
-            return 'tangy red sauce';
+        battery: function() {
+            return 'lithium ion 15 hours';
         },
-        createCrust: function() {
-            return 'thin and crispy';
+        keypad: function() {
+            return 'touchscreen keypad';
+        },
+        processor: function() {
+            return 'ARMv8'
         }
     });
 };
 
-// Try it out!
-var californiaIngredients = Ingredients.createCaliforniaStyle();
-console.log(californiaIngredients.createCrust()); // returns 'thin and crispy';
+DeviceFactory.makeTablet = function() {
+    return fromPrototype(DeviceFactory, {
+        screen: function() {
+            return 'retina 9 inches';
+        },
+        battery: function() {
+            return 'lithium ion 15 hours';
+        },
+        keypad: function() {
+            return 'touchscreen keypad';
+        },
+        processor: function() {
+            return 'ARMv8'
+        }
+    });
+};
+
+
+var appleMacbookPro = DeviceFactory.makeLaptop();
+console.log(appleMacbookPro.screen()); // returns 'retina 13 inches';
+var iPhoneSomeS = DeviceFactory.makeSmartPhone();
+var iPadSomeSS = DeviceFactory.makeTablet();
