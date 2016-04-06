@@ -4,7 +4,7 @@ var mySingleton = (function() {
   function init(options) {
     //some private variables
     var x = '1', y = 2, z = 'Abc', pi = function() { console.log(Math.PI);}
-    //return bunch of public methods(accessing private variables if needed.)
+    //return public methods(accessing private variables if needed.)
     return {
       X : x,
       getPi : function() {

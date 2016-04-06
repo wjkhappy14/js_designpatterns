@@ -8,7 +8,7 @@ var commandPattern = (function(){
       return "This is arg 3 "+arg3;
     },
     executeCommands: function(name) {
-      return commandSet[name] && commandSet[name].apply( commandSet, [].slice.call(arguments, 1) );
+      return commandSet[name] && commandSet[name].apply( commandSet, [].slice.call(arguments, 1) ); //gives arguments list
     }
   }
   return commandSet;
