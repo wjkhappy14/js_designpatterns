@@ -7,7 +7,7 @@ var Car = function(model, brand) {
 
 //carFactory using the common car model/methdd
 var carFactory = (function(){
-  var existingCars = {}, esitingCar;
+  var existingCars = {}, existingCar;
   return {
     createCar: function(model, brand) {
       existingCar = existingCars[model];
