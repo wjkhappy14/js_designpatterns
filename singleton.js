@@ -29,6 +29,6 @@ var mySingleton = (function() {
 
 var singleton = mySingleton.initialize();
 console.log(singleton.X); //'1'
-console.log(singleton.getPi());//3.141592653589793
+console.log(singleton.getPi()());//3.141592653589793
 
 

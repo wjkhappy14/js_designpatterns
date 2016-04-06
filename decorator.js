@@ -15,7 +15,7 @@ var anA = new functionA();
 
 describeA( anA );//here aa='a'
 
-var output = describeA.a();
+var output = anA.a();
 
 console.log(output); //'An a is the first alphabet in English and the most important one.'
 
