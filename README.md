@@ -3,26 +3,30 @@ Simple examples to help you understand Design Patterns in Javascript
 
 __Available__
 
-* [constructor](./constructor.js)
-
-* [prototype](./prototype.js)
-
-* [module](./module.js)
-
 * [command](./command.js)
 
-* [observer](./observer.js)
-
-* [singleton](./singleton.js)
-
-* [mixins](./mixins.js)
-
-* [facade](./facade.js)
+* [constructor](./constructor.js)
 
 * [decorator](./decorator.js)
+
+* [facade](./facade.js)
 
 * [factory](./factory.js)
 
 * [flyweight](./flyweight.js)
+
+* [mixins](./mixins.js)
+
+* [module](./module.js)
+
+* [observer](./observer.js)
+
+* [prototype](./prototype.js)
+
+* [singleton](./singleton.js)
+
+
+
+
 
 
