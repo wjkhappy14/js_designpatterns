@@ -16,14 +16,14 @@ var mouse = (function() {
         return "Unrecognised activity";
       }
     }
-  },
+  }
 
   return {
     facade: function(activity) {
-      privates.getActivity(activity);
+      return privates.getActivity(activity);
     }
   }
-})
+})();
 
 console.log(mouse.facade('hover')); //User is hovering
 
