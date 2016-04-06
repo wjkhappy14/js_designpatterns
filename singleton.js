@@ -3,7 +3,7 @@ var mySingleton = (function() {
   
   function init(options) {
     //some private variables
-    var x = '1', y = 2, z = 'Abc', pi = function() { console.log(Math.PI);}
+    var x = '1', y = 2, z = 'Abc', pi = Math.PI;
     //return public methods(accessing private variables if needed.)
     return {
       X : x,
@@ -29,6 +29,6 @@ var mySingleton = (function() {
 
 var singleton = mySingleton.initialize();
 console.log(singleton.X); //'1'
-console.log(singleton.getPi()());//3.141592653589793
+console.log(singleton.getPi());//3.141592653589793
 
 
