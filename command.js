@@ -1,3 +1,9 @@
+//Remarks: Taken from feedback on Reddit.
+//The only reason to have the Command Pattern is if your language doesn't have functions/lambdas as a first-class construct. 
+//A Command object is a poor-mans function.
+//This is/was true of Java (depending on which version you're running), 
+//but is not true of Javascript, making the Command Pattern in Javascript completely pointless.
+
 //Structure and example
 var commandPattern = (function(){
   var commandSet = {

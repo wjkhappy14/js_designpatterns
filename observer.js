@@ -1,20 +1,44 @@
-//Structure and Example
-//Taken from https://gist.github.com/cowboy/661855
+function theSubject(){
+  this.handlerList = [];
+}
 
-(function($) {
+theSubject.prototype = {
+  addObserver: function(obs) {
+    //add all the observers in an array.
+    this.handlerList.push(obs);
+    console.log('added observer', this.handlerList);
+  },
+  removeObserver: function(obs) {
+    //remove given observer from the array.
+    for ( var ii=0, length = this.handlerList.length; ii<length; ii++ ) {
+      if(this.handlerList[ii] === obs) {
+          this.handlerList.splice(ii,1);
+          console.log('removed observer', this.handlerList);
+      }
+    }
+  },
+  notify: function(obs, context) {
+    //for all functions in handler, notify
+    var bindingContext = context || window;
+    this.handlerList.forEach(function(fn){
+        fn.call(bindingContext, obs);
+    });
+  }
+}
 
-  var o = $({});
+function init() {
+    var theEventHandler = function(item) { 
+        console.log("fired: " + item); 
+    };
+ 
+    var subject = new theSubject();
+ 
+    subject.addObserver(theEventHandler); //adds the given function in handler list
+    subject.notify('event #1'); //calls the function once.
+    subject.removeObserver(theEventHandler); //removes this function from the function list
+    subject.notify('event #2'); //notify doesn't call anything
+    subject.addObserver(theEventHandler); //adds the function again
+    subject.notify('event #3'); //calls it once with event 3
+}
 
-  $.subscribe = function() {
-    o.on.apply(o, arguments);
-  };
-
-  $.unsubscribe = function() {
-    o.off.apply(o, arguments);
-  };
-
-  $.publish = function() {
-    o.trigger.apply(o, arguments);
-  };
-
-}(jQuery));
+init();
