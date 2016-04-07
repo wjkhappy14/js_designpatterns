@@ -34,7 +34,7 @@ var carProductionManager = (function() {
           car: car
       }
     },
-    repairCar: function(carId, newColor) {
+    repaintCar: function(carId, newColor) {
       var carData = carDb[carId];
       carData.color = newColor
     }
