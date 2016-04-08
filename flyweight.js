@@ -13,11 +13,10 @@ var carFactory = (function() {
       existingCar = existingCars[model];
       if (!!existingCar) {
         return existingCar;
-      } else {
-        var car = new Car(model, brand);
-        existingCars[model] = car;
-        return car;
       }
+      var car = new Car(model, brand);
+      existingCars[model] = car;
+      return car;
     }
   }
 })();
