@@ -15,6 +15,8 @@ __Available__
 
 * [flyweight](./flyweight.js)
 
+* [iterator](./iterator.js)
+
 * [mixins](./mixins.js)
 
 * [module](./module.js)
