@@ -21,6 +21,8 @@ __Available__
 
 * [module](./module.js)
 
+* [mvc](./mvc.js)
+
 * [observer](./observer.js)
 
 * [prototype](./prototype.js)
