@@ -19,7 +19,7 @@ function aConstructor(){
 }
  
 // Extend both protoype with our Mixin
-jQuery.extend( aConstructor.prototype, mixins );
+for(var key in mixins) aConstructor.prototype[key] = mixins[key];
  
 // Create a new instance of aConstructor
 var myMixinConstructor = new aConstructor();
