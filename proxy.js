@@ -95,6 +95,6 @@ var hp = HotelProxy(4, true, false, 2800, 150);
 console.log(hp.getScore()); // 7
 console.log(hp.getHotelRoomsVolume()); // 420000
 hp.setAvgRoomSize(160);
-hp.getHotelRoomsVolume() // 448000
+console.log(hp.getHotelRoomsVolume()); // 448000
 hp.setStars(5);
-hp.getScore(); //8
+console.log(hp.getScore()); //8
