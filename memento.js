@@ -18,17 +18,18 @@ function Memento(initialState) {
 				throw new Error('No state indexed ' + index);
 			}
 		},
-		addState: function(state) {
-			if(!state)
+		addState: function(newState) {
+			if(!newState)
 				throw new Error('Please provide a state object');
-			stateList.push(state);
+			state = newState;
+			stateList.push(newState);
 		}
 	} 
 }
 
 // Helper function used to deep copy an object using jQuery
 function copy(obj) {
-	return jQuery.extend(true, {}, obj)
+	return jQuery.extend(true, {}, obj);
 }
 
 // Example Usage, please notice that using this pattern, you should
