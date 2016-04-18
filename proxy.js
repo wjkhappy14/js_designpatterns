@@ -11,6 +11,39 @@ function Hotel(stars, isCityCenter, isNew, numberOfRooms, avgRoomSize) {
 	this.numberOfRooms = numberOfRooms;
 	this.avgRoomSize = avgRoomSize;
 }
+Hotel.prototype = { // Define getters and setters
+	getStars: function() {
+		return this.stars;
+	},
+	setStars: function(starsRate) {
+		this.stars = starsRate;
+	},
+	isCityCenter: function() {
+		return this.isCityCenter;
+	},
+	toggleCenter: function() {
+		this.isCityCenter = !this.isCityCenter;
+	},
+	isNew: function() {
+		return this.isNew;
+	},
+	toggleNew: function() {
+		this.isNew = !this.isNew;
+	},
+	getNumberOfRooms: function() {
+		return this.numberOfRooms;
+	},
+	setNumberOfRooms: function(num) {
+		this.numberOfRooms = num;	
+	},
+	getAvgRoomSize: function() {
+		return this.avgRoomSize;
+	},
+	setAvgRoomSize: function(newAvg) {
+		this.avgRoomSize = newAvg;
+	}
+}
+
 
 /****************
       Proxy
@@ -33,8 +66,8 @@ var HotelProxy = function(stars, isCityCenter, isNew, numberOfRooms, avgRoomSize
 				return 0.5;
 		}
 	}
-	// Return functions to use via proxy
-	return {
+	// Extend hotel instance
+	Object.assign(hotel, {
 		getScore: function() {
 			var score = scoreByStars(hotel.stars);
 			if(hotel.isCityCenter) {
@@ -51,10 +84,17 @@ var HotelProxy = function(stars, isCityCenter, isNew, numberOfRooms, avgRoomSize
 		getHotelRoomsVolume: function() {
 			return hotel.numberOfRooms * hotel.avgRoomSize;
 		}
-	}
+	});
+	
+	// Return extended instance
+	return hotel;
 }
 
 // Usage example
 var hp = HotelProxy(4, true, false, 2800, 150);
 console.log(hp.getScore()); // 7
 console.log(hp.getHotelRoomsVolume()); // 420000
+hp.setAvgRoomSize(160);
+console.log(hp.getHotelRoomsVolume()); // 448000
+hp.setStars(5);
+console.log(hp.getScore()); //8
