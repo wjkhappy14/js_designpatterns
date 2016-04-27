@@ -12,7 +12,8 @@ theSubject.prototype = {
     //remove given observer from the array.
     for ( var ii=0, length = this.handlerList.length; ii<length; ii++ ) {
       if(this.handlerList[ii] === obs) {
-          this.handlerList.splice(ii,1);
+          this.handlerList.splice(ii--,1);
+          length--;
           console.log('removed observer', this.handlerList);
       }
     }
@@ -24,7 +25,7 @@ theSubject.prototype = {
         fn.call(bindingContext, obs);
     });
   }
-}
+};
 
 function init() {
     var theEventHandler = function(item) { 
@@ -35,7 +36,8 @@ function init() {
  
     subject.addObserver(theEventHandler); //adds the given function in handler list
     subject.notify('event #1'); //calls the function once.
-    subject.removeObserver(theEventHandler); //removes this function from the function list
+    subject.addObserver(theEventHandler); // adds the given function one more time
+    subject.removeObserver(theEventHandler); //removes this function twice from the function list
     subject.notify('event #2'); //notify doesn't call anything
     subject.addObserver(theEventHandler); //adds the function again
     subject.notify('event #3'); //calls it once with event 3

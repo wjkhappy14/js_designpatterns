@@ -33,11 +33,9 @@ function AccountController(model, view) {
 	}
 	this.deposit = function(amount) {
 		this.setBalance(model.getBalance() + amount);
-		this.accountView();
 	}
 	this.discount = function(amount) {
 		this.setBalance(model.getBalance() - amount);
-		this.accountView();
 	}
 	this.setOwner = function(newOwner) {
 		model.owner = newOwner;
