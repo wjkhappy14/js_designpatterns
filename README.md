@@ -35,8 +35,7 @@ __Available__
 
 * [singleton](./singleton.js)
 
-
-
+* [visitor](./visitor.js)
 
 
 
