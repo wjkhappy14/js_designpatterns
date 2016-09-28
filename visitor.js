@@ -17,12 +17,6 @@ Counter.prototype.accept = function(visitor) {
   visitor.visit.call(this);
 };
 
-function Employee(name, salary, vacation) {
-  this.name = name;
-  this.salary = salary;
-  this.vacation = vacation;
-}
-
 // Create a visitor object that will decrement
 // the counter
 var visitor = {
