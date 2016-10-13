@@ -1,82 +1,42 @@
 // Visitor lets you define a new operation without changing 
 // the class of the elements on which it operates.
 
+// Define 'Counter' Class
+var Counter = function(initVal) {
+  this.count = initVal || 0;
+};
 
-// Define 'Employee' Class
-function Employee(name, salary, vacation) {
-	this.name = name;
-	this.salary = salary;
-	this.vacation = vacation;
-}
-Employee.prototype = {
-	getName: function() {
-		return this.name;
-	},
-	getSalary: function() {
-		return this.salary;
-	},
-	setSalary: function(newSalary) {
-		this.salary = newSalary;
-	},
-	getVacation: function() {
-		return this.vacation;
-	},
-	setVacation: function(vacation_days) {
-		this.vacation = vacation_days;
-	},		
+Counter.prototype.increment = function() {
+  this.count++;
+};
 
-	// Let visitor apply its functionallity
-	// on the instance, by passing the instance
-	// object to the 'visit' function.
-	accept: function(visitor) {
-		visitor.visit(this);
-	}
-}
+// Let a visitor access any properties of a
+// 'Counter' instance by calling ìts 'visit'
+// function on 'this'
+Counter.prototype.accept = function(visitor) {
+  visitor.visit.call(this);
+};
 
-// Define Visitors
-function RaiseSalary() {} // Salaray raise visitor
-RaiseSalary.prototype.visit = function(employee) {
-	employee.setSalary(employee.getSalary() * 1.2);
-}
-function AddVacationDays() {} // Vacation days addition visitor
-AddVacationDays.prototype.visit = function(employee) {
-	employee.setVacation(employee.getVacation() + 3);
-}
+// Create a visitor object that will decrement
+// the counter
+var visitor = {
+  visit: function() {
+    this.count--;
+  }
+};
 
+// Usage example
+var counter = new Counter;
 
-/****************
-  Usage Example
- ***************/
- // data logger
- function logData(employees, msg) {
- 	console.log(msg);
- 	console.log('--------------------------');
- 	employees.forEach(function(employee) {
-		console.log('Name: ' + employee.getName());
-		console.log('Salary: ' + employee.getSalary());
-		console.log('Vacation Days: ' + employee.getVacation());
-		console.log('---');
-	});
-	console.log('\n\n\n');
- }
- // set employees
-var employees = [
-	new Employee('Guy', 17000, 10),
-	new Employee('Dor', 8000, 7),
-	new Employee('Josh', 11000, 12),
-]; 
-// initialize visitors
-var salaryVisitor = new RaiseSalary();
-var vacationVisitor = new AddVacationDays();
+counter.accept(visitor);
+console.log(counter.count); // -1
 
-// log data before accepting visitors
-logData(employees, 'Before accepting visitors:');
+// Alternatively, one might permanently bind
+// the visit funtion to the 'Counter' instance
+Counter.prototype.accept = function(visitor) {
+  visitor.visit = visitor.visit.bind(this);
+};
 
-// apply visitors functionallity
-employees.forEach(function(employee) {
-	employee.accept(salaryVisitor);
-	employee.accept(vacationVisitor);
-});
-
-// log data to see the changes after accepting visitors
-logData(employees, 'After accepting visitors:');
+counter.accept(visitor);
+visitor.visit();
+console.log(counter.count); // -2
